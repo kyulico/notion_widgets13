@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desktop</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #ffff;
+    font-family: 'VT323', monospace;
+}
+
+.popup {
+    width: 638px;
+    max-width: 100%;
+    height: 248px;
+    background: #ffebf2;
+    border: 2px solid white;
+    position: relative;
+    overflow: hidden;
+}
+
+.titlebar {
+    height: 40px;
+    margin: 3px 3px 0;
+    background: #f63888;
+    border: 2px solid #ffb0cf;
+    color: white;
+    font-size: 27px;
+    font-weight: bold;
+    padding: 1px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    width: 31px;
+    height: 29px;
+    background: #ffd9e8;
+    border: 2px outset #fff0f5;
+}
+
+.warning {
+    position: absolute;
+    left: 25px;
+    top: 59px;
+    width: 66px;
+    height: 70px;
+}
+
+.message {
+    position: absolute;
+    left: 188px;
+    top: 61px;
+    font-size: 29px;
+    color: #111;
+}
+
+.face {
+    position: absolute;
+    left: 190px;
+    top: 120px;
+    font-size: 24px;
+    color: #111;
+    white-space: nowrap;
+}
+
+.ok-button {
+    position: absolute;
+    left: 241px;
+    top: 169px;
+    width: 151px;
+    height: 46px;
+    background: #ffeaf1;
+    border: 3px outset #222;
+    color: black;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.ok-button::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 2px dotted #555;
+}
+
+.ok-button:active {
+    border-style: inset;
+}
+</style>
+</head>
+
+<body>
+
+<div class="popup">
+
+    <div class="titlebar">
+        <span>Desktop</span>
+        <div class="close"></div>
+    </div>
+
+    <svg class="warning" viewBox="0 0 70 75">
+        <path d="M27 7 Q33 -1 41 9 L65 56 Q70 69 56 70 L10 70 Q-1 68 5 56 Z"
+        fill="#333" opacity=".8"/>
+        <path d="M25 5 Q31 -3 39 7 L62 53 Q67 65 54 66 L11 66 Q0 64 6 52 Z"
+        fill="#f47aa9" stroke="#a72e62" stroke-width="2"/>
+        <path d="M29 11 Q34 5 39 14 L57 52 Q60 58 52 59 L15 59 Q8 58 12 51 Z"
+        fill="#f48ab4"/>
+        <rect x="32" y="20" width="6" height="23" rx="3" fill="black"/>
+        <circle cx="35" cy="51" r="4" fill="black"/>
+    </svg>
+
+    <div class="message">I love you.</div>
+
+    <div class="face">˶( @ ᴗ ▽ ᴗ @ )</div>
+
+    <button class="ok-button" onclick="playAudio()">OK</button>
+
+</div>
+
+<audio id="myAudio" preload="auto"></audio>
+
+<script>
+
+// YOUR AUDIO URLS
+const audioFiles = [
+    "https://imglink.cc/cdn/sxB1Gzn2Oj.mov",
+    "https://imglink.cc/cdn/51T5O8X6S_.mov",
+    "https://imglink.cc/cdn/u0rC-aVTP2.mov"
+];
+
+const audio = document.getElementById("myAudio");
+
+let currentAudio = 0;
+
+function playAudio() {
+
+    audio.pause();
+
+    audio.src = audioFiles[currentAudio];
+    audio.currentTime = 0;
+
+    audio.play().catch(error => {
+        console.error("Audio playback failed:", error);
+        alert("Couldn't play this audio. Check the URL and file format.");
+    });
+
+    currentAudio = (currentAudio + 1) % audioFiles.length;
+}
+
+</script>
+
+</body>
+</html>
